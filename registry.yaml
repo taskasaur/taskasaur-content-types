@@ -1,0 +1,73 @@
+version: 1
+types:
+  - id: taskasaur.task-list
+    name: Task list
+    mimeTypes: [application/vnd.csdb]
+    extensions: [csdb]
+    tables:
+      tasks:
+        required: {id: text, title: text, status: text}
+    requirements: [Each task has a stable unique id.]
+  - id: taskasaur.events
+    name: Calendar events
+    mimeTypes: [application/vnd.csdb]
+    extensions: [csdb]
+    tables:
+      events:
+        required: {id: text, uid: text, dtstamp: text, dtstart: text}
+  - id: taskasaur.reminders
+    name: Reminders
+    mimeTypes: [application/vnd.csdb]
+    extensions: [csdb]
+    tables:
+      reminders:
+        required: {id: text, action: text, trigger: text, related: text}
+    requirements: [Receiving a reminder never authorizes native execution.]
+  - id: taskasaur.time-intervals
+    name: Time intervals
+    mimeTypes: [application/vnd.csdb]
+    extensions: [csdb]
+    tables:
+      intervals:
+        required: {id: text, title: text, started_at: text, kind: text}
+  - id: taskasaur.measurements
+    name: Measurements
+    mimeTypes: [application/vnd.csdb]
+    extensions: [csdb]
+    tables:
+      measurements:
+        required: {id: text, title: text, started_at: text}
+  - id: taskasaur.presets
+    name: Presets
+    mimeTypes: [application/vnd.csdb]
+    extensions: [csdb]
+    tables:
+      presets:
+        required: {id: text, name: text}
+  - id: taskasaur.github-issues
+    name: GitHub issues
+    mimeTypes: [application/vnd.csdb]
+    extensions: [csdb]
+    tables:
+      issues:
+        required: {id: text, repository: text, number: integer, title: text, state: text}
+  - id: taskasaur.mail
+    name: Mail
+    mimeTypes: [application/vnd.csdb]
+    extensions: [csdb]
+    tables:
+      messages:
+        required: {id: text, subject: text}
+    requirements: [Credential secrets are excluded from content.]
+  - id: taskasaur.workflows
+    name: Workflows
+    mimeTypes: [application/json]
+    extensions: [json]
+    requirements: [Contains nodes and edges. Opening or syncing never runs a workflow.]
+  - id: taskasaur.office-index
+    name: Office index
+    mimeTypes: [application/vnd.csdb]
+    extensions: [csdb]
+    tables:
+      documents:
+        required: {id: text, name: text, file: text, kind: text}
